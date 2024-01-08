@@ -3,6 +3,7 @@ package com.example.infits;
 import static android.content.Context.MODE_PRIVATE;
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import android.os.SystemClock;
 import android.util.Log;
@@ -59,6 +61,8 @@ public class cycling_frag2 extends Fragment implements SensorEventListener {
     private boolean isRotationStarted = false;
     SensorManager sensorManager;
     Sensor stepSensor;
+
+    ImageView imgback;
 
     int pre_step=0,current=0,flag_steps=0,current_steps;
     float distance, calories;
@@ -120,6 +124,8 @@ public class cycling_frag2 extends Fragment implements SensorEventListener {
         time_disp = view.findViewById(R.id.textView73);
         todaygoal = view.findViewById(R.id.textView87);
 
+        imgback = view.findViewById(R.id.cycle_imgback);
+
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         register();
 
@@ -147,6 +153,22 @@ public class cycling_frag2 extends Fragment implements SensorEventListener {
                 flag_steps = 0;
                 register();
             }
+        });
+
+        //back button
+        imgback.setOnClickListener(v -> {
+
+            Navigation.findNavController(v).navigate(
+                    R.id.cycling_frag2_to_activitythirdfragment,
+                    null,
+                    new NavOptions.Builder()
+                            .setPopUpTo(R.id.activitythirdfragment, true)
+                            .build()
+            );
+
+             //   Navigation.findNavController(v).navigate(R.id.cycling_frag2_to_activitythirdfragment);
+            
+
         });
 
         // stop activity

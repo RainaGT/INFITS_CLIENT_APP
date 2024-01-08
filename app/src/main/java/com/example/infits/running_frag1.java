@@ -3,6 +3,7 @@ package com.example.infits;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -19,6 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
@@ -58,6 +62,8 @@ public class running_frag1 extends Fragment implements SensorEventListener {
     Sensor stepSensor;
     int pre_step=0,current=0,flag_steps=0,current_steps;
     float distance, calories;
+
+    ImageView imgback;
 
     Button btn_pause, btn_start;
 
@@ -112,6 +118,7 @@ public class running_frag1 extends Fragment implements SensorEventListener {
         calorie_disp = view.findViewById(R.id.textView72);
         time_disp = view.findViewById(R.id.textView73);
         todaygoal = view.findViewById(R.id.textView87);
+        imgback = view.findViewById(R.id.run_imgback);
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         register();
@@ -141,6 +148,24 @@ public class running_frag1 extends Fragment implements SensorEventListener {
                 register();
             }
         });
+
+
+
+        //back button
+        imgback.setOnClickListener(v -> {
+
+            Navigation.findNavController(v).navigate(
+                    R.id.action_running_frag1_to_activitySecondFragment,
+                    null,
+                    new NavOptions.Builder()
+                            .setPopUpTo(R.id.activitySecondFragment, true)
+                            .build()
+            );
+
+        });
+
+
+
 
         // stop activity
         btn_stop.setOnClickListener(new View.OnClickListener() {

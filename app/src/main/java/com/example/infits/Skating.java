@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
@@ -50,6 +51,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Skating extends Fragment implements SensorEventListener {
+
+    ImageView imgback;
 
     private RotateAnimation rotateAnimation;
     private boolean isRotationStarted = false;
@@ -111,6 +114,7 @@ public class Skating extends Fragment implements SensorEventListener {
         calorie_disp = view.findViewById(R.id.textView72);
         time_disp = view.findViewById(R.id.textView73);
         todaygoal = view.findViewById(R.id.textView87);
+        imgback = view.findViewById(R.id.skate_imgback);
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         register();
@@ -123,6 +127,22 @@ public class Skating extends Fragment implements SensorEventListener {
         }
         // Start the rotation animation when the fragment is created
         startRotationAnimation();
+
+
+        //back button
+        imgback.setOnClickListener(v -> {
+
+            Navigation.findNavController(v).navigate(
+                    R.id.action_Skating_to_activitySkating,
+                    null,
+                    new NavOptions.Builder()
+                            .setPopUpTo(R.id.activitySkating, true)
+                            .build()
+            );
+
+           // Navigation.findNavController(v).navigate(R.id.action_Skating_to_activitySkating);
+
+        });
 
         //Activity Paused
         btn_pause.setOnClickListener(new View.OnClickListener() {
