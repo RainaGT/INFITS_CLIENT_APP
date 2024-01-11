@@ -289,6 +289,9 @@ public class running_frag1 extends Fragment implements SensorEventListener {
     }
 
     private void sendDataToServer() {
+
+        if (time != null) {
+
         Log.e("Value of string value of time", String.valueOf(time));
         Log.e(" value of time", time);
         String url = "http://192.168.29.52/infits/trekkingTracker.php";
@@ -313,9 +316,9 @@ public class running_frag1 extends Fragment implements SensorEventListener {
                 Map<String, String> data = new HashMap<>();
                 data.put("client_id", DataFromDatabase.client_id);
                 data.put("clientuserID", DataFromDatabase.clientuserID);
-                data.put("distance",  String.valueOf(distance));
+                data.put("distance", String.valueOf(distance));
                 data.put("calories", String.format("%.2f", calories));
-                data.put("runtime",time);
+                data.put("runtime", time);
                 data.put("goal", goal);
                 data.put("steps", "0");
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -323,9 +326,9 @@ public class running_frag1 extends Fragment implements SensorEventListener {
                 LocalDateTime now = LocalDateTime.now();
                 data.put("date", dtf.format(now));
                 data.put("dateandtime", DTF.format(now));
-                data.put("operationtodo","updatedata");
-                data.put("table","runningtracker");
-                data.put("category","Running");
+                data.put("operationtodo", "updatedata");
+                data.put("table", "runningtracker");
+                data.put("category", "Running");
                 return data;
             }
         };
@@ -334,5 +337,10 @@ public class running_frag1 extends Fragment implements SensorEventListener {
         request.setRetryPolicy(new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getActivity().getApplicationContext()).add(request);
         Toast.makeText(getActivity(), "Updating data...", Toast.LENGTH_SHORT).show();
+
+    } else {
+            Log.e("MyApp", "Time variable is null");
+            // Handle the case where time is null (show a message, log, or perform other actions)
+        }
     }
 }

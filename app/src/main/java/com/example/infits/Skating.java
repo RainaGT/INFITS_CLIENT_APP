@@ -283,6 +283,8 @@ public class Skating extends Fragment implements SensorEventListener {
     }
 
     private void sendDataToServer() {
+
+        if (time != null) {
         Log.e("Value of string value of time", String.valueOf(time));
         Log.e(" value of time", time);
         String url = "http://192.168.29.52/infits/trekkingTracker.php";
@@ -329,5 +331,9 @@ public class Skating extends Fragment implements SensorEventListener {
         request.setRetryPolicy(new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(getActivity().getApplicationContext()).add(request);
         Toast.makeText(getActivity(), "Updating data...", Toast.LENGTH_SHORT).show();
+        } else {
+            Log.e("MyApp", "Time variable is null");
+            // Handle the case where time is null (show a message, log, or perform other actions)
+        }
     }
 }

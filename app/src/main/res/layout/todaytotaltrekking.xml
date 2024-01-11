@@ -308,6 +308,7 @@
             app:trackGradient="@array/track"
             app:trackWidth="10dp"
             tools:ignore="MissingConstraints" />
+
         <TextView
             android:id="@+id/textView75"
             android:layout_width="wrap_content"
@@ -318,10 +319,10 @@
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarCycling"
             app:layout_constraintEnd_toEndOf="@+id/progressBarCycling"
-            app:layout_constraintHorizontal_bias="0.514"
+            app:layout_constraintHorizontal_bias="0.520"
             app:layout_constraintStart_toStartOf="@+id/progressBarCycling"
             app:layout_constraintTop_toTopOf="@+id/progressBarCycling"
-            app:layout_constraintVertical_bias="0.613" />
+            app:layout_constraintVertical_bias="0.40" />
 
         <TextView
             android:id="@+id/textView76"
@@ -493,7 +494,7 @@
             android:drawablePadding="7dp"
             android:fontFamily="@font/nats_regular"
 
-            android:paddingLeft="12dp"
+
 
             android:text="Time"
             android:textAlignment="textStart"
@@ -502,7 +503,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.579"
+            app:layout_constraintHorizontal_bias="0.620"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button5" />
 
@@ -510,17 +511,18 @@
             android:id="@+id/textView74"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:fontFamily="@font/nats_regular"
             android:text="0 Hours"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:flow_horizontalBias="1.999"
-            app:layout_constraintBottom_toBottomOf="@+id/button6"
 
-            app:layout_constraintHorizontal_bias="1.289"
+            app:layout_constraintBottom_toBottomOf="@+id/button6"
             app:layout_constraintStart_toEndOf="@+id/button6"
-            app:layout_constraintTop_toTopOf="@+id/button6" />
+            app:layout_constraintTop_toTopOf="@+id/button6"
+            app:layout_constraintVertical_bias="0.0" />
 
         <!--        <ImageView-->
         <!--            android:layout_width="30dp"-->
