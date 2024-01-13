@@ -1,5 +1,7 @@
 package com.example.infits;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -38,6 +40,10 @@ public class activityTracker2 extends Fragment {
     ImageView running_img,walking_img,cycling_img,jumprope_img,trekking_img,skating_img,dancing_img,stair_climbing;
     ImageButton backbutton;
 
+    private static final String PREFERENCES_NAME = "MyPreferences";
+    private static final String KEY_LINEAR3_VISIBILITY = "linear3Visibility";
+    private static final String KEY_LINEAR4_VISIBILITY = "linear4Visibility";
+
     public activityTracker2 () {
         // Required empty public constructor
     }
@@ -47,6 +53,8 @@ public class activityTracker2 extends Fragment {
     @Override
     public void onCreate ( Bundle savedInstanceState ) {
         super.onCreate ( savedInstanceState );
+
+
 
 
     }
@@ -66,6 +74,22 @@ public class activityTracker2 extends Fragment {
         linear3 = view.findViewById(R.id.linear3);
         linear4 = view.findViewById(R.id.linear4);
         toggleButton = view.findViewById(R.id.toggleButton);
+
+
+        // Restore the visibility states from SharedPreferences
+        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+        int linear3Visibility = preferences.getInt(KEY_LINEAR3_VISIBILITY, View.GONE);
+        int linear4Visibility = preferences.getInt(KEY_LINEAR4_VISIBILITY, View.GONE);
+
+        linear3.setVisibility(linear3Visibility);
+        linear4.setVisibility(linear4Visibility);
+
+        // Update the UI and toggleButton text based on the visibility
+        if (linear3Visibility == View.VISIBLE) {
+            toggleButton.setText("View Less");
+        } else {
+            toggleButton.setText("View All");
+        }
 
 
         // Add some test data to the dateList
@@ -153,6 +177,8 @@ public class activityTracker2 extends Fragment {
         return  view;
     }
 
+
+
     private void toggleLinearLayoutVisibility() {
         if (linear3.getVisibility() == View.VISIBLE) {
             linear3.setVisibility(View.GONE);
@@ -163,5 +189,12 @@ public class activityTracker2 extends Fragment {
             linear4.setVisibility(View.VISIBLE);
             toggleButton.setText("View Less");
         }
+
+        // Save the visibility states in SharedPreferences
+        SharedPreferences preferences = requireActivity().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(KEY_LINEAR3_VISIBILITY, linear3.getVisibility());
+        editor.putInt(KEY_LINEAR4_VISIBILITY, linear4.getVisibility());
+        editor.apply();
     }
 }

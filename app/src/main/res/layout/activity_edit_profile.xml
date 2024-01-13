@@ -48,7 +48,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingBottom="@dimen/_25sdp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ScrollView
@@ -124,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    android:paddingBottom="@dimen/_10sdp">
+                    android:paddingBottom="30dp">
 
 
                     <LinearLayout
@@ -648,6 +647,7 @@
                                 android:id="@+id/button_editProfile"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_marginBottom="30dp"
                                 android:layout_gravity="center_horizontal|bottom"
                                 android:backgroundTint="#4B9AFB"
                                 android:fontFamily="@font/nats_regular"
